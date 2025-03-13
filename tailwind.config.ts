@@ -20,8 +20,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ["Inter var", "sans-serif"],
-        display: ["Plus Jakarta Sans", "sans-serif"],
+        sans: ["Poppins", "Inter var", "sans-serif"],
+        display: ["Poppins", "Plus Jakarta Sans", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",
