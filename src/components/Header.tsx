@@ -1,3 +1,4 @@
+
 import React from "react";
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger } from "@/components/ui/navigation-menu";
 import { cn } from "@/lib/utils";
@@ -71,6 +72,14 @@ const Header = () => {
       productsSection.scrollIntoView({ behavior: "smooth" });
     }
   };
+  
+  const scrollToFAQ = (e: React.MouseEvent) => {
+    e.preventDefault();
+    const faqSection = document.getElementById("faq-section");
+    if (faqSection) {
+      faqSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   return (
     <header className="sticky top-0 z-50 w-full border-b backdrop-blur-sm bg-background/80">
@@ -82,7 +91,7 @@ const Header = () => {
         <NavigationMenu>
           <NavigationMenuList>
             <NavigationMenuItem>
-              <NavigationMenuTrigger className="bg-transparent font-poppins" onClick={scrollToProducts}>Products</NavigationMenuTrigger>
+              <NavigationMenuTrigger className="bg-transparent font-poppins">Our Apps</NavigationMenuTrigger>
               <NavigationMenuContent className="w-screen max-w-screen-lg mx-auto">
                 <div className="grid grid-cols-2 gap-4 p-6">
                   <AppListItem
@@ -189,6 +198,24 @@ const Header = () => {
                   </AppListItem>
                 </div>
               </NavigationMenuContent>
+            </NavigationMenuItem>
+            
+            <NavigationMenuItem>
+              <NavigationMenuLink className="font-poppins bg-transparent inline-flex h-10 w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50" onClick={scrollToProducts}>
+                Products
+              </NavigationMenuLink>
+            </NavigationMenuItem>
+            
+            <NavigationMenuItem>
+              <NavigationMenuLink className="font-poppins bg-transparent inline-flex h-10 w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50" onClick={scrollToFAQ}>
+                FAQ
+              </NavigationMenuLink>
+            </NavigationMenuItem>
+            
+            <NavigationMenuItem>
+              <NavigationMenuLink className="font-poppins bg-transparent inline-flex h-10 w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50" href="#">
+                Support
+              </NavigationMenuLink>
             </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>
