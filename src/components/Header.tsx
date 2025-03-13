@@ -1,8 +1,7 @@
-
 import React from "react";
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger } from "@/components/ui/navigation-menu";
 import { cn } from "@/lib/utils";
-import { File, FileText, Mail, ShoppingBag, Calendar, MessageSquare, Image, FileImage, Video, Map, BarChart } from "lucide-react";
+import { File, FileText, Mail, ShoppingBag, Calendar, MessageSquare, Image, FileImage, Video, Map, BarChart, HardDrive, Table, FileEdit, CheckCircle } from "lucide-react";
 
 const ListItem = React.forwardRef<
   React.ElementRef<"a">,
