@@ -32,26 +32,31 @@ ListItem.displayName = "ListItem";
 
 const AppListItem = React.forwardRef<
   React.ElementRef<"a">,
-  React.ComponentPropsWithoutRef<"a"> & { icon: React.ReactNode; iconClass?: string }
->(({ className, title, children, icon, iconClass, ...props }, ref) => {
+  React.ComponentPropsWithoutRef<"a"> & { icon: React.ReactNode; iconClass?: string; compatibleWith?: React.ReactNode[] }
+>(({ className, title, children, icon, iconClass, compatibleWith, ...props }, ref) => {
   return (
     <li>
       <NavigationMenuLink asChild>
         <a
           ref={ref}
           className={cn(
-            "flex select-none space-x-4 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
+            "flex select-none rounded-md p-4 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
             className
           )}
           {...props}
         >
-          <div className={cn("app-icon", iconClass)}>{icon}</div>
-          <div className="space-y-1">
+          <div className={cn("app-icon mr-4", iconClass)}>{icon}</div>
+          <div className="space-y-1 flex-1">
             <div className="text-sm font-medium leading-none">{title}</div>
-            <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+            <p className="line-clamp-2 text-sm leading-snug text-muted-foreground mt-1">
               {children}
             </p>
           </div>
+          {compatibleWith && compatibleWith.length > 0 && (
+            <div className="flex items-center gap-1.5 ml-2">
+              {compatibleWith}
+            </div>
+          )}
         </a>
       </NavigationMenuLink>
     </li>
@@ -60,126 +65,138 @@ const AppListItem = React.forwardRef<
 AppListItem.displayName = "AppListItem";
 
 const Header = () => {
+  const scrollToProducts = (e: React.MouseEvent) => {
+    e.preventDefault();
+    const productsSection = document.getElementById("products-section");
+    if (productsSection) {
+      productsSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <header className="sticky top-0 z-50 w-full border-b backdrop-blur-sm bg-background/80">
       <div className="container h-16 flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <span className="text-xl font-semibold bg-gradient-to-r from-workspace-blue to-workspace-green bg-clip-text text-transparent">Workspace</span>
+          <span className="text-xl font-semibold bg-gradient-to-r from-workspace-blue to-workspace-green bg-clip-text text-transparent font-poppins">Workspace</span>
         </div>
         
         <NavigationMenu>
           <NavigationMenuList>
             <NavigationMenuItem>
-              <NavigationMenuTrigger className="bg-transparent">Products</NavigationMenuTrigger>
-              <NavigationMenuContent>
-                <ul className="grid w-[500px] grid-cols-2 gap-3 p-4">
+              <NavigationMenuTrigger className="bg-transparent font-poppins" onClick={scrollToProducts}>Products</NavigationMenuTrigger>
+              <NavigationMenuContent className="w-screen max-w-screen-lg mx-auto">
+                <div className="grid grid-cols-2 gap-4 p-6">
                   <AppListItem
-                    title="Docs"
-                    icon={<FileText className="text-white" size={20} />}
+                    title="Mail merge for workspace"
+                    icon={<Mail className="text-white" size={20} />}
                     iconClass="app-icon-gradient-blue"
                     href="#"
+                    compatibleWith={[
+                      <div key="gmail" className="flex items-center justify-center w-7 h-7 rounded-full bg-gray-100" title="Gmail">
+                        <Mail className="h-4 w-4 text-workspace-red" />
+                      </div>,
+                      <div key="drive" className="flex items-center justify-center w-7 h-7 rounded-full bg-gray-100" title="Google Drive">
+                        <HardDrive className="h-4 w-4 text-workspace-green" />
+                      </div>,
+                      <div key="docs" className="flex items-center justify-center w-7 h-7 rounded-full bg-gray-100" title="Google Docs">
+                        <FileText className="h-4 w-4 text-workspace-blue" />
+                      </div>
+                    ]}
                   >
-                    Create and edit documents online
+                    Send personalized emails to your contacts, include unique file attachments, track emails and schedule messages.
                   </AppListItem>
                   <AppListItem
-                    title="Sheets"
-                    icon={<BarChart className="text-white" size={20} />}
+                    title="Document studio"
+                    icon={<FileText className="text-white" size={20} />}
                     iconClass="app-icon-gradient-green"
                     href="#"
+                    compatibleWith={[
+                      <div key="docs" className="flex items-center justify-center w-7 h-7 rounded-full bg-gray-100" title="Google Docs">
+                        <FileText className="h-4 w-4 text-workspace-blue" />
+                      </div>,
+                      <div key="sheets" className="flex items-center justify-center w-7 h-7 rounded-full bg-gray-100" title="Google Sheets">
+                        <Table className="h-4 w-4 text-workspace-green" />
+                      </div>,
+                      <div key="forms" className="flex items-center justify-center w-7 h-7 rounded-full bg-gray-100" title="Google Forms">
+                        <FileEdit className="h-4 w-4 text-workspace-yellow" />
+                      </div>,
+                      <div key="drive" className="flex items-center justify-center w-7 h-7 rounded-full bg-gray-100" title="Google Drive">
+                        <HardDrive className="h-4 w-4 text-workspace-green" />
+                      </div>
+                    ]}
                   >
-                    Spreadsheets with real-time collaboration
+                    Merge documents from data in Google Sheets and Forms. Automate contracts, invoices, agreements, and more.
                   </AppListItem>
                   <AppListItem
-                    title="Slides"
-                    icon={<Image className="text-white" size={20} />}
+                    title="Email sheets on schedule"
+                    icon={<Table className="text-white" size={20} />}
                     iconClass="app-icon-gradient-yellow"
                     href="#"
+                    compatibleWith={[
+                      <div key="sheets" className="flex items-center justify-center w-7 h-7 rounded-full bg-gray-100" title="Google Sheets">
+                        <Table className="h-4 w-4 text-workspace-green" />
+                      </div>,
+                      <div key="gmail" className="flex items-center justify-center w-7 h-7 rounded-full bg-gray-100" title="Gmail">
+                        <Mail className="h-4 w-4 text-workspace-red" />
+                      </div>
+                    ]}
                   >
-                    Create beautiful presentations together
+                    Automatically email Google Spreadsheet reports and dashboards on a recurring schedule to your team.
                   </AppListItem>
                   <AppListItem
-                    title="Mail"
-                    icon={<Mail className="text-white" size={20} />}
+                    title="Forms notifications"
+                    icon={<FileEdit className="text-white" size={20} />}
                     iconClass="app-icon-gradient-red"
                     href="#"
+                    compatibleWith={[
+                      <div key="forms" className="flex items-center justify-center w-7 h-7 rounded-full bg-gray-100" title="Google Forms">
+                        <FileEdit className="h-4 w-4 text-workspace-yellow" />
+                      </div>,
+                      <div key="gmail" className="flex items-center justify-center w-7 h-7 rounded-full bg-gray-100" title="Gmail">
+                        <Mail className="h-4 w-4 text-workspace-red" />
+                      </div>
+                    ]}
                   >
-                    Secure and private email for business
+                    Send customized email notifications to form respondents and anyone else when someone submits your Google Form.
                   </AppListItem>
                   <AppListItem
-                    title="Calendar"
-                    icon={<Calendar className="text-white" size={20} />}
+                    title="Drive auditor"
+                    icon={<HardDrive className="text-white" size={20} />}
                     iconClass="app-icon-gradient-blue"
                     href="#"
+                    compatibleWith={[
+                      <div key="drive" className="flex items-center justify-center w-7 h-7 rounded-full bg-gray-100" title="Google Drive">
+                        <HardDrive className="h-4 w-4 text-workspace-green" />
+                      </div>
+                    ]}
                   >
-                    Schedule and manage your meetings
+                    Run a complete security audit of your Google Drive and know who has access to your shared files and folders.
                   </AppListItem>
                   <AppListItem
-                    title="Meet"
-                    icon={<Video className="text-white" size={20} />}
+                    title="Save Gmail to Drive"
+                    icon={<CheckCircle className="text-white" size={20} />}
                     iconClass="app-icon-gradient-green"
                     href="#"
+                    compatibleWith={[
+                      <div key="gmail" className="flex items-center justify-center w-7 h-7 rounded-full bg-gray-100" title="Gmail">
+                        <Mail className="h-4 w-4 text-workspace-red" />
+                      </div>,
+                      <div key="drive" className="flex items-center justify-center w-7 h-7 rounded-full bg-gray-100" title="Google Drive">
+                        <HardDrive className="h-4 w-4 text-workspace-green" />
+                      </div>
+                    ]}
                   >
-                    Secure video meetings for teams
+                    Auto-download email messages and file attachments from Gmail to your Drive.
                   </AppListItem>
-                </ul>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <NavigationMenuTrigger className="bg-transparent">Solutions</NavigationMenuTrigger>
-              <NavigationMenuContent>
-                <ul className="grid gap-3 p-6 w-[400px]">
-                  <ListItem
-                    title="For Business"
-                    href="#"
-                  >
-                    Enterprise-grade solutions for organizations of all sizes
-                  </ListItem>
-                  <ListItem
-                    title="For Education"
-                    href="#"
-                  >
-                    Free tools designed for teaching and learning
-                  </ListItem>
-                  <ListItem
-                    title="For Small Teams"
-                    href="#"
-                  >
-                    Collaborate and grow with flexible workspace solutions
-                  </ListItem>
-                </ul>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <NavigationMenuTrigger className="bg-transparent">Pricing</NavigationMenuTrigger>
-              <NavigationMenuContent>
-                <ul className="grid gap-3 p-6 w-[400px]">
-                  <ListItem
-                    title="Business Standard"
-                    href="#"
-                  >
-                    $12 per user/month with business email and 2TB cloud storage
-                  </ListItem>
-                  <ListItem
-                    title="Business Plus"
-                    href="#"
-                  >
-                    $18 per user/month with enhanced security and management controls
-                  </ListItem>
-                  <ListItem
-                    title="Enterprise"
-                    href="#"
-                  >
-                    Custom pricing with premium security and full-service support
-                  </ListItem>
-                </ul>
+                </div>
               </NavigationMenuContent>
             </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>
         
         <div className="flex items-center gap-4">
-          <a href="#" className="text-sm font-medium hover:underline">Contact Sales</a>
-          <a href="#" className="rounded-full bg-workspace-blue/90 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-workspace-blue transition-colors">
+          <a href="#" className="text-sm font-medium hover:underline font-poppins">Contact Sales</a>
+          <a href="#" className="rounded-full bg-workspace-blue/90 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-workspace-blue transition-colors font-poppins">
             Get Started
           </a>
         </div>
