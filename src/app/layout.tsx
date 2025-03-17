@@ -7,6 +7,11 @@ import "@/styles/globals.css";
 
 const queryClient = new QueryClient();
 
+export const metadata = {
+  title: "Next.js Application",
+  description: "Built with Next.js and Tailwind CSS",
+};
+
 export default function RootLayout({
   children,
 }: {
