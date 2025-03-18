@@ -17,7 +17,7 @@ const config: Config = {
     },
     extend: {
       fontFamily: {
-        sans: ["Poppins", "Inter var", "sans-serif"],
+        sans: ["Poppins", "Inter", "sans-serif"],
         display: ["Poppins", "Plus Jakarta Sans", "sans-serif"],
       },
       colors: {

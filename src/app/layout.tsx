@@ -8,8 +8,8 @@ import "@/styles/globals.css";
 const queryClient = new QueryClient();
 
 export const metadata = {
-  title: "Next.js Application",
-  description: "Built with Next.js and Tailwind CSS",
+  title: "Workspace - A better way to work together",
+  description: "Connect, create, and collaborate seamlessly with Workspace. A secure platform designed for the modern workplace.",
 };
 
 export default function RootLayout({
@@ -19,12 +19,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+      </head>
       <body>
         <QueryClientProvider client={queryClient}>
           <TooltipProvider>
+            {children}
             <Toaster />
             <Sonner />
-            {children}
           </TooltipProvider>
         </QueryClientProvider>
       </body>
