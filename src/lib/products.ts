@@ -3,10 +3,18 @@ export interface Product {
   slug: string;
   name: string;
   description: string;
+  features: string[];
   monthlyPrice: number;
   yearlyPrice: number;
-  features: string[];
   marketplaceUrl?: string;
+  lemonSqueezyIds: {
+    productId: number;
+    checkoutId: string;
+    variants: {
+      monthly: number;
+      yearly: number;
+    };
+  };
 }
 
 export const products: Product[] = [
@@ -24,7 +32,15 @@ export const products: Product[] = [
       "Integration with Google Sheets for contact management",
       "Templates for common email scenarios"
     ],
-    marketplaceUrl: "https://workspace.google.com/marketplace/app/mail_merge"
+    marketplaceUrl: "https://workspace.google.com/marketplace/app/mail_merge",
+    lemonSqueezyIds: {
+      productId: 738898,
+      checkoutId: "673cab65-9159-4ae4-847d-3655bacb445f",
+      variants: {
+        monthly: 738898,
+        yearly: 738903
+      }
+    }
   },
   {
     slug: "document-studio",
@@ -40,7 +56,15 @@ export const products: Product[] = [
       "Conditional formatting and content",
       "Batch processing for multiple documents"
     ],
-    marketplaceUrl: "https://workspace.google.com/marketplace/app/document_studio"
+    marketplaceUrl: "https://workspace.google.com/marketplace/app/document_studio",
+    lemonSqueezyIds: {
+      productId: 738899,
+      checkoutId: "773cab65-9159-4ae4-847d-3655bacb445f",
+      variants: {
+        monthly: 738899,
+        yearly: 738904
+      }
+    }
   },
   {
     slug: "email-sheets",
@@ -56,10 +80,24 @@ export const products: Product[] = [
       "Multiple recipient management",
       "PDF conversion options"
     ],
-    marketplaceUrl: "https://workspace.google.com/marketplace/app/email_sheets"
+    marketplaceUrl: "https://workspace.google.com/marketplace/app/email_sheets",
+    lemonSqueezyIds: {
+      productId: 738900,
+      checkoutId: "873cab65-9159-4ae4-847d-3655bacb445f",
+      variants: {
+        monthly: 738900,
+        yearly: 738905
+      }
+    }
   }
 ];
 
+// Lookup function by slug
 export function getProductBySlug(slug: string): Product | undefined {
   return products.find((product) => product.slug === slug);
+}
+
+// Lookup function by product ID
+export function getProductById(id: number): Product | undefined {
+  return products.find(product => product.lemonSqueezyIds.productId === id);
 }
