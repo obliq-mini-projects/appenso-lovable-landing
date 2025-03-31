@@ -75,7 +75,7 @@ export default function ProductsPage() {
                 ))}
                 {product.features.length > 3 && (
                   <li className="text-sm text-workspace-blue hover:text-workspace-blue/80">
-                    <Link to={`/products/${product.slug}`}>
+                    <Link to={`/${product.slug}`}>
                       + {product.features.length - 3} more features
                     </Link>
                   </li>

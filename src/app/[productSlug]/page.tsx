@@ -51,7 +51,7 @@ export default function ProductPage() {
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               {product.marketplaceUrl && (
-                <a href={product.marketplaceUrl}>
+                <a href={product.marketplaceUrl} target="_blank" rel="noopener noreferrer">
                   <Button className="bg-workspace-blue hover:bg-workspace-blue/90">
                     Install
                   </Button>
