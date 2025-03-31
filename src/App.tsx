@@ -1,6 +1,7 @@
 
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { TooltipProvider } from "@/components/ui/tooltip";
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
 import ProductSection from "@/components/ProductSection";
@@ -28,17 +29,19 @@ const HomePage = () => {
 const App = () => {
   return (
     <Router>
-      <div className="min-h-screen flex flex-col">
-        <Header />
-        <main className="flex-grow">
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/product" element={<ProductsPage />} />
-            <Route path="/:productSlug" element={<ProductPage />} />
-          </Routes>
-        </main>
-        <Footer />
-      </div>
+      <TooltipProvider>
+        <div className="min-h-screen flex flex-col">
+          <Header />
+          <main className="flex-grow">
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/product" element={<ProductsPage />} />
+              <Route path="/:productSlug" element={<ProductPage />} />
+            </Routes>
+          </main>
+          <Footer />
+        </div>
+      </TooltipProvider>
     </Router>
   );
 };
