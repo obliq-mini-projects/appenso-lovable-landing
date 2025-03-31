@@ -33,6 +33,26 @@ export default function ProductPage() {
           <p className="text-xl text-muted-foreground max-w-3xl">{product.description}</p>
         </div>
         
+        {/* Call to Action Section */}
+        <div className="my-12 bg-gradient-to-r from-workspace-red/10 to-workspace-blue/10 rounded-2xl p-8 text-center">
+          <h2 className="text-2xl font-bold mb-4">Enhance productivity. Work smarter.</h2>
+          <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
+            Boost your productivity and efficiency with our powerful Google Workspace Add-ons.
+          </p>
+          <div className="flex flex-col sm:flex-row justify-center gap-4">
+            <a href={product.marketplaceUrl}>
+              <Button className="bg-workspace-blue hover:bg-workspace-blue/90">
+                Install
+              </Button>
+            </a>
+            <a href={`/${product.slug}/checkout?plan=yearly`}>
+              <Button variant="outline" className="border-workspace-blue/30 text-workspace-blue hover:bg-workspace-blue/5">
+                Upgrade
+              </Button>
+            </a>
+          </div>
+        </div>
+
         <div className="grid md:grid-cols-5 gap-8 mb-16">
           {/* Features Card - Takes 3/5 of the grid on desktop */}
           <Card className="md:col-span-3 border-0 shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden">
@@ -78,16 +98,16 @@ export default function ProductPage() {
               <div className="space-y-3">
                 <a 
                   href={`/${product.slug}/checkout?plan=monthly`}
-                  className="inline-flex w-full justify-center items-center px-4 py-3 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-workspace-blue hover:bg-workspace-blue/90 transition-colors"
+                  className="inline-flex w-full justify-center items-center px-4 py-3 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-workspace-dark hover:bg-workspace-dark/90 transition-colors"
                 >
                   Subscribe Monthly
                 </a>
                 
                 <a 
                   href={`/${product.slug}/checkout?plan=yearly`}
-                  className="relative inline-flex w-full justify-center items-center px-4 py-3 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-workspace-green hover:bg-workspace-green/90 transition-colors overflow-hidden group"
+                  className="relative inline-flex w-full justify-center items-center px-4 py-3 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-workspace-dark hover:bg-workspace-dark/90 transition-colors overflow-hidden group"
                 >
-                  <span className="absolute -right-1 -top-1 bg-workspace-blue text-white text-xs px-2 py-0.5 rotate-12 shadow-md transform group-hover:-rotate-0 transition-transform">Best Value</span>
+                  <span className="absolute -right-1 -top-1 bg-workspace-green text-white text-xs px-2 py-0.5 rotate-12 shadow-md transform group-hover:-rotate-0 transition-transform">Best Value</span>
                   Subscribe Yearly
                 </a>
               </div>
@@ -105,22 +125,6 @@ export default function ProductPage() {
               )}
             </CardFooter>
           </Card>
-        </div>
-
-        {/* Call to Action Section */}
-        <div className="mt-12 bg-gradient-to-r from-workspace-blue/10 to-workspace-green/10 rounded-2xl p-8 text-center">
-          <h2 className="text-2xl font-bold mb-4">Ready to enhance your workflow?</h2>
-          <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-            Join thousands of professionals who have streamlined their work with our Google Workspace add-ons.
-          </p>
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <Button className="bg-workspace-blue hover:bg-workspace-blue/90">
-              Get Started Today
-            </Button>
-            <Button variant="outline" className="border-workspace-blue/30 text-workspace-blue hover:bg-workspace-blue/5">
-              Schedule a Demo
-            </Button>
-          </div>
         </div>
       </div>
     </div>
