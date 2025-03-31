@@ -1,50 +1,24 @@
-import { Metadata } from 'next';
-import { notFound } from 'next/navigation';
-import { getProductBySlug, products } from '@/lib/products';
-import Link from 'next/link';
+
+import { useEffect, useState } from 'react';
+import { useParams, Link, useNavigate } from 'react-router-dom';
+import { getProductBySlug } from '@/lib/products';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { CheckCircle } from 'lucide-react';
 
-interface ProductPageProps {
-  params: {
-    productSlug: string;
-  };
-}
-
-export async function generateMetadata({ params }: ProductPageProps): Promise<Metadata> {
-  const product = getProductBySlug(params.productSlug);
+export default function ProductPage() {
+  const { productSlug } = useParams<{ productSlug: string }>();
+  const navigate = useNavigate();
+  const [product, setProduct] = useState(productSlug ? getProductBySlug(productSlug) : undefined);
   
+  useEffect(() => {
+    if (!product) {
+      navigate('/not-found', { replace: true });
+    }
+  }, [product, navigate]);
+
   if (!product) {
-    return {
-      title: 'Product Not Found',
-      description: 'The requested product could not be found',
-    };
-  }
-  
-  return {
-    title: `${product.name} - Google Workspace Add-on`,
-    description: product.description,
-    openGraph: {
-      title: `${product.name} - Google Workspace Add-on`,
-      description: product.description,
-      type: 'website',
-    },
-  };
-}
-
-// This function is required for static export with dynamic routes
-export function generateStaticParams() {
-  return products.map(product => ({
-    productSlug: product.slug,
-  }));
-}
-
-export default function ProductPage({ params }: ProductPageProps) {
-  const product = getProductBySlug(params.productSlug);
-  
-  if (!product) {
-    notFound();
+    return null;
   }
   
   return (

@@ -1,5 +1,5 @@
 
-import Link from "next/link";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { products } from "@/lib/products";
 
@@ -43,7 +43,7 @@ export default function ProductsPage() {
               </div>
               
               <Button className="w-full mb-4" asChild>
-                <Link href={`/${product.slug}`}>
+                <Link to={`/${product.slug}`}>
                   View Details
                 </Link>
               </Button>
@@ -75,7 +75,7 @@ export default function ProductsPage() {
                 ))}
                 {product.features.length > 3 && (
                   <li className="text-sm text-workspace-blue hover:text-workspace-blue/80">
-                    <Link href={`/products/${product.slug}`}>
+                    <Link to={`/products/${product.slug}`}>
                       + {product.features.length - 3} more features
                     </Link>
                   </li>
@@ -92,7 +92,7 @@ export default function ProductsPage() {
           We offer enterprise plans with advanced features, priority support, and custom development options.
         </p>
         <Button variant="outline" asChild>
-          <Link href="/contact">Contact our Sales Team</Link>
+          <Link to="/contact">Contact our Sales Team</Link>
         </Button>
       </div>
     </div>

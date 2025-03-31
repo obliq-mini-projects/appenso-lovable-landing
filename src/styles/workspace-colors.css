@@ -1,0 +1,74 @@
+
+:root {
+  --workspace-blue: #4285F4;
+  --workspace-red: #EA4335;
+  --workspace-yellow: #FBBC05;
+  --workspace-green: #34A853;
+  --workspace-gray: #5F6368;
+  --workspace-dark: #202124;
+}
+
+.text-workspace-blue { color: var(--workspace-blue); }
+.text-workspace-red { color: var(--workspace-red); }
+.text-workspace-yellow { color: var(--workspace-yellow); }
+.text-workspace-green { color: var(--workspace-green); }
+.text-workspace-gray { color: var(--workspace-gray); }
+.text-workspace-dark { color: var(--workspace-dark); }
+
+.bg-workspace-blue { background-color: var(--workspace-blue); }
+.bg-workspace-red { background-color: var(--workspace-red); }
+.bg-workspace-yellow { background-color: var(--workspace-yellow); }
+.bg-workspace-green { background-color: var(--workspace-green); }
+.bg-workspace-gray { background-color: var(--workspace-gray); }
+.bg-workspace-dark { background-color: var(--workspace-dark); }
+
+.from-workspace-blue { --tw-gradient-from: var(--workspace-blue); }
+.to-workspace-blue { --tw-gradient-to: var(--workspace-blue); }
+.from-workspace-green { --tw-gradient-from: var(--workspace-green); }
+.to-workspace-green { --tw-gradient-to: var(--workspace-green); }
+.from-workspace-blue\/5 { --tw-gradient-from: rgba(66, 133, 244, 0.05); }
+.to-workspace-green\/5 { --tw-gradient-to: rgba(52, 168, 83, 0.05); }
+.from-workspace-blue\/10 { --tw-gradient-from: rgba(66, 133, 244, 0.1); }
+.to-workspace-green\/10 { --tw-gradient-to: rgba(52, 168, 83, 0.1); }
+
+.border-workspace-blue\/30 { border-color: rgba(66, 133, 244, 0.3); }
+
+.bg-workspace-gray\/5 { background-color: rgba(95, 99, 104, 0.05); }
+.bg-workspace-gray\/10 { background-color: rgba(95, 99, 104, 0.1); }
+.bg-workspace-green\/10 { background-color: rgba(52, 168, 83, 0.1); }
+.bg-workspace-green\/20 { background-color: rgba(52, 168, 83, 0.2); }
+.bg-workspace-blue\/5 { background-color: rgba(66, 133, 244, 0.05); }
+.bg-workspace-blue\/10 { background-color: rgba(66, 133, 244, 0.1); }
+
+/* Add animation for fading in */
+.animate-fadeIn {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* App icon gradients */
+.app-icon-gradient-blue {
+  background: linear-gradient(135deg, #4285F4, #0F9D58);
+}
+
+.app-icon-gradient-green {
+  background: linear-gradient(135deg, #0F9D58, #4285F4);
+}
+
+.app-icon-gradient-yellow {
+  background: linear-gradient(135deg, #FBBC05, #EA4335);
+}
+
+.app-icon-gradient-red {
+  background: linear-gradient(135deg, #EA4335, #FBBC05);
+}
