@@ -1,4 +1,3 @@
-
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -12,6 +11,7 @@ import Footer from "@/components/Footer";
 import ProductsPage from "./app/product/page";
 import ProductPage from "./app/[productSlug]/page";
 import NotFound from "./pages/NotFound";
+import NewLanding from "./pages/NewLanding";
 
 const HomePage = () => {
   return (
@@ -39,6 +39,7 @@ const App = () => {
               <Route path="/" element={<HomePage />} />
               <Route path="/product" element={<ProductsPage />} />
               <Route path="/:productSlug" element={<ProductPage />} />
+              <Route path="/new-landing" element={<NewLanding />} />
               <Route path="/not-found" element={<NotFound />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
